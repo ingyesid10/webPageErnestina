@@ -444,11 +444,33 @@ button[type="submit"] {
     color: white;
 }
 /* Services page styles */
+/* Services page styles */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
     margin-bottom: 40px;
+}
+
+/* Si quieres aplicar un estilo especial cuando tiene la clase .table */
+.services-grid.table {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas fijas */
+}
+
+/* Para que el primer elemento ocupe el 100% del ancho */
+.services-grid.table > *:first-child {
+    grid-column: 1 / -1;
+}
+
+/* Versión responsive para móviles */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid.table > *:first-child {
+        grid-column: 1;
+    }
 }
 .service-card {
     padding: 40px 30px;
@@ -721,7 +743,7 @@ button[type="submit"] {
         grid-template-columns: 1fr;
     }
     .services-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
     }
     .team-grid {
         grid-template-columns: 1fr;
@@ -748,4 +770,92 @@ button[type="submit"] {
     .logo {
         font-size: 22px;
     }
+}
+
+/* NUEVO */
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    /* background-color: white; */
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+tr:nth-child(even) {
+    /* background-color: #f2f2f2; */
+}
+
+tr:hover {
+    background-color: #1a89d8;
+}
+
+.highlight {
+    /* background-color: #e3f2fd; */
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    th, td {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        display: block;
+    }
+    
+    thead {
+        display: none;
+    }
+    
+    tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    
+    td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px dotted #ddd;
+    }
+    
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 10px;
+        color: #3498db;
+    }
+}
+
+.footer-note {
+    font-style: italic;
+    color: #7f8c8d;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
 }
